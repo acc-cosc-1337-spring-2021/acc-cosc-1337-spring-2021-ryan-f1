@@ -3,6 +3,7 @@
 #include "if.h"
 #include "if_else.h"
 #include "switch.h"
+
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
@@ -27,4 +28,10 @@ TEST_CASE("test menu", "enter menu options")
 	REQUIRE(menu(3) == "Option 3");
 	REQUIRE(menu(4) == "Option 4");
 	REQUIRE(menu(5) == "Invalid Option");
+}
+
+TEST_CASE("verify is in range function", "must be 1 - 10")
+{
+	REQUIRE(is_in_range_1_to_10(2) == true);
+	REQUIRE(is_in_range_1_to_10(0) == false);
 }

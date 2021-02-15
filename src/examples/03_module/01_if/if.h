@@ -7,3 +7,4 @@ bool is_even(int num);
 // and returns a bool type
 
 
+bool is_in_range_1_to_10(int num);

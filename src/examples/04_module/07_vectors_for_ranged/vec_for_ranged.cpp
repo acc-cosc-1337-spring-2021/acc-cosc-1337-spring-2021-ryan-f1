@@ -2,7 +2,7 @@
 #include<iostream>
 #include<vector>
 
-using std::vector;
+using std::vector; using std::cout;
 
 /*
 Function loop_vector_w_for_ranged
@@ -11,7 +11,18 @@ and displays the numbers to screen using a for ranged loop with auto as follows:
 
 @param none
 */
+void loop_vector_w_for_ranged(std::vector<int> nums)
+{
+    for(auto num: nums)
+    {
+            cout<<num<<"\n";
+            num = -1;
 
+    }
+
+
+
+}
 
 /*
 Function loop_vector_w_for_ranged_val

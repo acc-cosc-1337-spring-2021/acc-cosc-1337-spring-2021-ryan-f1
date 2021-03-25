@@ -3,11 +3,29 @@
 #include<iostream>
 using std::cout;
 
-int main()
+void BankAccount::deposit(int amount)
 {
-    BankAccount account;
-    cout<<sizeof(account)<<"\n";
-    auto balance = account.get_balance();
+    if(amount > 0)
+    {
+        balance += amount;
+    }
+}
 
-    cout<<"the balance is: "<<balance;
+void BankAccount::withdraw(int amount)
+{
+    if(amount > 0 && amount <= balance)
+    {
+        balance -= amount;
+    }
+}
+//free functions-not part of the Bank account class
+void display_account(BankAccount account)
+{
+    cout<<"Balance is: "<<account.get_balance()<<"\n";
+}
+
+BankAccount get_account(int amount)
+{
+    BankAccount account(amount);
+    return account;
 }

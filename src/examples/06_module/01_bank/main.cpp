@@ -8,7 +8,7 @@ using std::cout;
 int main()
 {
 	BankAccount account;
-	
+	friend_display_balance(account);
 	cout<<sizeof(account)<<"\n";
 	auto balance = account.get_balance();
 

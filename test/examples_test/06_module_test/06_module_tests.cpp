@@ -5,6 +5,14 @@ TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
 
+TEST_CASE("Test bank_balance variable")
+{
+	BankAccount account;
+	account.deposit(40);
+	
+	REQUIRE(account.get_bank_balance() == 40);
+}
+
 TEST_CASE("test new bank account object balance")
 {
 	BankAccount account;
@@ -32,3 +40,4 @@ TEST_CASE("test new bank account object balance is 100")
 	BankAccount account(100);
 	REQUIRE(account.get_balance() == 100);
 }
+

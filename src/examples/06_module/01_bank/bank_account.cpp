@@ -1,7 +1,5 @@
 //bank_account.cpp
 #include "bank_account.h"
-#include<iostream>
-using std::cout;
 
 void BranchBank::update_balance(int b)
 {
@@ -10,7 +8,7 @@ void BranchBank::update_balance(int b)
 }
 
 void BankAccount::deposit(int amount)
-{
+{ 
     if(amount > 0)
     {
         balance += amount;
@@ -27,42 +25,41 @@ void BankAccount::withdraw(int amount)
     }
 }
 
-int BankAccount::bank_balance = 0;
+int BankAccount::bank_balance = 0;//initialize static variable
 
-//FRIEND FUNCTION - also a free function
+//FRIEND FUNCTION it is a free function
 void friend_display_balance(const BankAccount& account)
 {
-    std::cout<<"Friend Display Account - Balance is: "<<a.balance<<"\n";
+    std::cout<<"Friend Display Account - Balance is: "<<account.balance<<"\n";
 }
 
 std::ostream& operator<<(std::ostream& out, const BankAccount& a)
 {
-    out<<"Display Account--Balance is: "<<a.get_balance();
+    out<<"cout Overload Display Account - Balance is: "<<a.balance<<"\n";
 
     return out;
 }
 
-BankAccount operator+(const BankAccount& a1, const BankAccount& a2)
-{
-    BankAccount account(a1.balance+a1.balance);
-
-    return account;
-}
-
-std::istream& operator>>(std::istream& in, BankAccount& a)
-{
+ std::istream& operator>>(std::istream& in, BankAccount& a)
+ {
     int amount;
     std::cout<<"Enter amount: ";
     in>>amount;
     a.balance += amount;
 
     return in;
+ }
+
+BankAccount operator+(const BankAccount& a1, const BankAccount& a2)
+{
+    BankAccount account(a1.balance + a2.balance);
+    return account;
 }
 
-//free functions-not part of the Bank account class
-void display_account(BankAccount account)
+//FREE FUNCTIONS DEFINITIONS
+void display_account(const BankAccount& account)
 {
-    cout<<"Balance is: "<<account.get_balance()<<"\n";
+    std::cout<<"Display Account--Balance is: "<<account.get_balance()<<"\n";
 }
 
 BankAccount get_account(int amount)

@@ -1,48 +1,37 @@
-#include "bank_account.h"
-#include "atm.h"
-#include<string>
 #include<iostream>
-using std::string;
-using std::cin;
-using std::cout;
+using std::cout; using std::cin;
+
+#include "atm.h"
+#include "bank_account.h"
 
 int main()
 {
-
-
-
-	BankAccount account = get_account(100);
-	cout<<account;
-	BankAccount account1;
-	BankAccount account2;
-	//BankAccount account3 = account + account1 + account2;
-	cout<<"Bank balance: "<<account.get_bank_balance()<<"\n";
-	BranchBank branch_account(100000);
-	branch_account.update_balance(5000);
-	cout<<"Branch Balance: "<<branch_account.get_branch_balance()<<"\n";
-	cout<<"Bank Balance: "<<account.get_bank_balance()<<"\n";
-
-
-	char choice;
+	BankAccount a1(100);
+	BankAccount a2(200);
+	BankAccount account = a1 + a2;//get_account(100);//variable-an instance of BankAccount object in memory
+	cin>>account;
+	/*char choice;
+	
 	do
 	{
 		ATM atm;
-
 		atm.scan_card();
 		atm.display_balance();
-		cout<<"Continue? Y/N: "<<"\n";
+		cout<<"Continue? y or n";
 		cin>>choice;
-		
-	} while (choice == 'y' || choice == 'Y');
-		
+	}while(choice == 'y' || choice == 'Y');*/
 
-
-/*
+	cout<<account;
 	friend_display_balance(account);
-	cout<<sizeof(account)<<"\n";
-	auto balance = account.get_balance();
+	display_account(account);
 
-	cout<<"Balance: "<<balance<<"\n";
+	cout<<"Deposit $50\n";
+	account.deposit(50);
+	cout<<"Balance: "<<account.get_balance()<<"\n";
+
+	cout<<"Withdraw $10\n";
+	account.withdraw(10);
+	cout<<"Balance: "<<account.get_balance()<<"\n";
+
 	return 0;
-	*/
 }

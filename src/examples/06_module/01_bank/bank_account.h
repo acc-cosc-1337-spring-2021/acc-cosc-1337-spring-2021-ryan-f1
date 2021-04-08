@@ -1,4 +1,5 @@
 //bank_account.h
+
 #ifndef BRANCH_BANK_H
 #define BRANCH_BANK_H
 
@@ -9,9 +10,8 @@ public:
     void update_balance(int b);
     int get_branch_balance()const {return branch_balance;}
 
-
 private:
-    static int branch_balance;
+    int branch_balance;
 };
 
 #endif
@@ -26,24 +26,22 @@ class BankAccount
 friend void friend_display_balance(const BankAccount& account);
 friend void BranchBank::update_balance(int b);
 friend std::ostream& operator<<(std::ostream& out, const BankAccount& a);
+friend std::istream& operator>>(std::istream& in, BankAccount& a);
 friend BankAccount operator+(const BankAccount& a1, const BankAccount& a2);
-friend std::istream& operator>>(std::istream& in, const BankAccount& a);
 
-
-public:
-    BankAccount() = default;
-    BankAccount(int b) : balance(b){bank_balance += b;}
-    int get_balance()const{return balance;}
+public://access specifier
+    BankAccount() = default; //synthesized default constructor
+    explicit BankAccount(int b) : balance(b){ bank_balance += b;}
+    int get_balance()const {return balance;}
     void deposit(int amount);
     void withdraw(int amount);
     static int get_bank_balance(){return bank_balance;}
-
 private:
-    int balance{0};
-    static int bank_balance;
-
+    int balance{0};//1 customer's balance
+    static int bank_balance;//all the bank's customer balances
 };
 
+//Free functions-NOT PART OF THE BANKACCOUNT CLASS
 void display_account(const BankAccount& account);
 BankAccount get_account(int amount);
 

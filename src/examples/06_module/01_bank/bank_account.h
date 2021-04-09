@@ -36,8 +36,10 @@ public://access specifier
     void deposit(int amount);
     void withdraw(int amount);
     static int get_bank_balance(){return bank_balance;}
+
+protected: // derived classes can directly access these 
+    int balance{0};
 private:
-    int balance{0};//1 customer's balance
     static int bank_balance;//all the bank's customer balances
 };
 

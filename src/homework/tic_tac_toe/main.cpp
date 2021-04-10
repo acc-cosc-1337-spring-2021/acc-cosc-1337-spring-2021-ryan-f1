@@ -1,7 +1,6 @@
 #include "tic_tac_toe.h"
 #include<iostream>
 using std::cout; using std::cin;
-//TO DO: add main functionality. fix tie gameover
 
 int main() 
 {
@@ -19,7 +18,7 @@ int main()
 			cin>>choice;
 		}
 		game.start_game(choice);
-		
+
 		//game loop
 		while(game.game_over() == false)
 		{

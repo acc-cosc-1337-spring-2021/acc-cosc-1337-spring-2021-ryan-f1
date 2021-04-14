@@ -8,8 +8,11 @@ class SavingsAccount : public BankAccount
 public:
     SavingsAccount(){};
     SavingsAccount(int b) : BankAccount(b){};
-    int get_balance()const{return balance * 0.05 * 3/12 + balance;}
+    int get_balance()const{return balance * interest_rate * time + balance;}
     double get_balance_with_interest();
+private:
+    const double interest_rate{0.05};//uses 8 more bytes
+    const double time{3/12};
 };
 
 

@@ -6,10 +6,10 @@ using std::cout;
 //friend overload printing vector of games
 std::ostream& operator<<(std::ostream& out, const TicTacToeManager& manager)
 {
-    for(int i = 0; i <= manager.games.size(); i++)
+    for(size_t i = 0; i <= manager.games.size(); i++)
     {
-        cout<<manager.games[i];
-        cout<<"\n";
+        out<<manager.games[i];
+        out<<"\n";
     }
 
     return out;

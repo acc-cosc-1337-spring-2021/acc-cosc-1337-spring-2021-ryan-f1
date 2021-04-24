@@ -2,19 +2,21 @@
 #include "tic_tac_toe.h"
 #include<iostream>
 #include<iomanip>
+#include<cmath>
+#include<memory>
 using std::cout; using std::cin;
 
 //friend functions
 std::istream& operator>>(std::istream& in, TicTacToe& game)
 {
     int position;
-    cout<<"It is "<<game.get_player()<<"'s turn. Pick a space 1 to 9.\n";
+    cout<<"It is "<<game.get_player()<<"'s turn, choose a board space.\n";
 		in>>position;
-		while(position < 1 || position > 9 || in.fail())
+		while(position < 1 || position > game.pegs.size() || in.fail())
 		{
 			in.clear();
 			in.ignore();
-			cout<<"That is not a valid position. Choose a space from 1 to 9.\n";
+			cout<<"That is not a valid position.\n";
 			in>>position;
 		}
     game.mark_board(position);
@@ -23,17 +25,18 @@ std::istream& operator>>(std::istream& in, TicTacToe& game)
 
 std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
 {
+    int board = sqrt(game.pegs.size());
     //iterate vector and cout to display the board
-    for (int i = 0; i <= 8; i++)
+    for (int i = 0; i <= (board*board)-1; i++)
     {
-        out<<game.pegs[i];
+         out<<game.pegs[i];
 
-        if ((i+1) % 3 == 0)
+        if ((i+1) % board == 0)
         {
             out<<"\n";
-            if(i != 8)
+            if(i != (board*board)-1)
             {
-                out<<std::setfill('=')<<std::setw(10)<<"=\n";
+                out<<std::setfill('=')<<std::setw(board*board+1)<<"=\n";
             }
         }
         else
@@ -123,41 +126,18 @@ void TicTacToe::set_winner()
     
 }
 //Check win functions
+//MOVED TO SUBCLASSES
 bool TicTacToe::check_column_win()
 {
-    bool win = false;
-    for(int i = 0; i <= 2; i++)
-    {   
-        if(pegs[i] == pegs[3+i] && pegs[i] == pegs[6+i] && pegs[i] != " ")
-        {
-            win = true;
-        }
-    }
-    return win;
+    return false;
 }
 
 bool TicTacToe::check_row_win()
 {
-    bool win = false;
-    for(int i = 0; i <= 2; i++)
-    {
-        if(pegs[3*i] == pegs[1+(3*i)] && pegs[3*i] == pegs[2+(3*i)] && pegs[3*i] != " ")
-        {
-            win = true;
-        }
-    }
-    return win;
+    return false;
 }
 
 bool TicTacToe::check_diagonal_win()
 {
-    bool win = false;
-    for(int i = 0; i <= 1; i++)
-    {
-        if(pegs[4] == pegs[2*i] && pegs[4] == pegs[8-(2*i)] && pegs[4] != " ")
-        {
-            win = true;
-        }
-    }
-    return win;
+    return false;
 }

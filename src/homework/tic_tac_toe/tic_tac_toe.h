@@ -8,10 +8,14 @@ using std::string;  using std::vector;
 
 class TicTacToe
 {
-friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
-friend std::istream& operator>>(std::istream& in, TicTacToe& game);
+    friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
+    friend std::istream& operator>>(std::istream& in, TicTacToe& game);
 
 public:
+    //Constructor
+    TicTacToe(){}
+    TicTacToe(int size) : pegs(size*size, " "){}
+
     bool game_over();
     void start_game(string first_player);
     void mark_board(int position);
@@ -23,12 +27,13 @@ private:
     bool check_board_full();
     void clear_board();
     void set_winner();
-    bool check_column_win();
-    bool check_row_win();
-    bool check_diagonal_win();
-
     string player, winner;
-    vector<string> pegs{" "," "," "," "," "," "," "," "," "};
+
+protected:
+    virtual bool check_column_win();
+    virtual bool check_row_win();
+    virtual bool check_diagonal_win();
+    vector<std::string> pegs;
 };
 
 #endif

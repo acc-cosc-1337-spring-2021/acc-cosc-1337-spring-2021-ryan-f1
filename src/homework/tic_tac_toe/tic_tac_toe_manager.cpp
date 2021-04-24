@@ -6,12 +6,11 @@ using std::cout;
 //friend overload printing vector of games
 std::ostream& operator<<(std::ostream& out, const TicTacToeManager& manager)
 {
-    for(size_t i = 0; i <= manager.games.size(); i++)
+    for(auto& game : manager.games)
     {
-        out<<manager.games[i];
+        out<<*game;
         out<<"\n";
     }
-
     return out;
 }
 //winner incrementor
@@ -33,10 +32,10 @@ void TicTacToeManager::update_winner_count(std::string winner)
 }
 
 //saves tictactoe object to vector and updates winner count
-void TicTacToeManager::save_game(TicTacToe game)
+void TicTacToeManager::save_game(unique_ptr<TicTacToe>& game)
 {
-    games.push_back(game);
-    update_winner_count(game.get_winner());
+    update_winner_count(game->get_winner());
+    games.push_back(std::move(game));
 }
 
 //sets reference variables equal to private class variables, cheats them out
